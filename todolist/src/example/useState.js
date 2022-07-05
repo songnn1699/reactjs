@@ -40,12 +40,11 @@ function App(){
     return (
         <div className="app">
             <h1>{count}</h1>
-            <button onClick={handleIncrease}> Increase </button>
+            <button onClick={handleIncrease}>Increase</button>
             <h1>{JSON.stringify(info)}</h1>
             <button onClick={handleInfo}> AddInfo</button> 
             <h1>{gift || 'Chua co thuong'} </h1>
             <button onClick={handleGift}>Prize!</button>
-
         </div>
 
     )
