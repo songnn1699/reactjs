@@ -4,8 +4,9 @@ function Content(){
     const [title, setTitle]= useState('')
     const [posts, setPosts] = useState([])
     const [type, setType]= useState('posts')
+    const [showGoToTop, setShowGoToTop] = useState();
 
-    const tab=['post', 'comments', 'albums']
+    const tab=['posts', 'comments', 'albums']
     useEffect(() =>{
         
         
@@ -16,6 +17,20 @@ function Content(){
             setPosts(posts)  
         })
     }, [type])
+
+    useEffect(() =>{
+
+        const handlescroll =() =>{
+            setShowGoToTop(window.scrollY >= 200)
+        }
+        window.addEventListener('scroll', handlescroll)
+
+        return () =>{
+            window.removeEventListener('scroll', handlescroll)
+        }
+
+    },[])
+
 
 
     return (
@@ -43,11 +58,13 @@ function Content(){
                     </li>
 
                 ))}
-
             </ul>
+            {showGoToTop &&(
+                <button style={{ position: 'fixed', right: 20, bottom: 20 }}>
+                    Go To Top
+                </button>
+            ) }
         </div>
-
-
     )
 }
 export default Content

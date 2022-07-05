@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import Content from "./content2";
+import { useState } from "react";
+import Content from "./contents4";
 
 function App(){
-    const [title, setTitle] = useState('')
     const [show, setShow] = useState(false)
     
     return (
