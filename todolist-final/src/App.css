@@ -1,0 +1,17 @@
+
+.App {
+  
+  display: flex;
+  flex-direction: column;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 50px !important;
+  margin :auto;
+  text-align: center;
+  background-image: linear-gradient(aquamarine, beige);
+  border-radius: 25px;
+  width: 500px;
+  height: 'auto';
+  
+  border: solid black 2px;
+} 
+
