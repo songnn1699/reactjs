@@ -1,37 +1,45 @@
-
+import React from 'react';
 import './App.css';
-import React, {useState} from 'react';
-
+import {useState} from 'react';
 
 function App() {
+  const [work, setWork]= useState('');
+  const [works, setWorks] = useState([]);
+  const handleAdd =() => {
+    setWorks(prev => [...prev, work])
+    setWork('')
   
-  const [jobs, setJobs]= useState([])
-  const [job, setJob] = useState('')
-  const handleSubmit = () => {
-    setJobs(prev =>
-      {
-        const newJobs=  [...prev,job]
-        const  jsonJobs =JSON.stringify(newJobs)
-        localStorage.setItem ('jobs', jsonJobs)
-        
-        
-        return newJobs
-      
-      })
-    setJob('')
   }
+
   return (
-    
-    <div style ={{ padding: 32}}>
-        <input value = {jobs} onChange={e => setJob(e.target.value)}/>
-        <button onclick={handleSubmit}> add</button>
+    <div
+      style={{
+        width: 500,
+        margin:'auto',
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'aquamarine',
+        padding: 20,
+        boxShadow: '0 0 10px 4px #bfbfbf',
+        borderRadius: 5,
+        height: '90vh',
+      }}
+    >
+      <h1>Todo App</h1>
+      <div>
+        <input style={{borderRadius: '10px', padding: '10px'}} value={work} onChange={e => setWork(e.target.value)} />
+        <button style={{borderRadius: '10px', padding: '10px'}} onClick={handleAdd}>Add</button>
         <ul>
-          {jobs.map((job, index) =>(
-            <li key={index}> {job}</li>
-          ))}
+          {works.map(work =>{
+            <li>{work}</li>
+          })}
         </ul>
+      </div>
+
+
     </div>
-    
-  );
+    );
 }
-export default App
+
+export default App;
