@@ -21,7 +21,7 @@ function App() {
         height: '90vh',
       }}
     >
-      <Title style={{ textAlign: 'center'}}>Todo  List</Title>
+      <Title style={{ textAlign: 'center', fontWeight: 'lighter'}}>Todo  List</Title>
       <Filters />
       <TodoList />
       <Divider />

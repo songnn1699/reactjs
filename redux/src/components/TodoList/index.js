@@ -1,11 +1,11 @@
 import { Col, Row, Input, Button, Select, Tag, Typography } from 'antd';
 import Todo from '../Todo';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo } from '../../redux/actions';
+//import { addTodo } from '../../redux/actions';
 import {v4 as uuidv4} from 'uuid';
 import { useState } from 'react';
 import {todosRemainingSelector} from '../../redux/selectors';
-
+import TodoListReducer from './todoReducer';
 
 export default function TodoList() {
   const dispatch = useDispatch();
@@ -17,7 +17,8 @@ export default function TodoList() {
 
 
   const handleAdd =() =>{
-    dispatch(addTodo({
+    dispatch(
+      TodoListReducer.actions.addTodo ({
       id: uuidv4(),
       name: todoName,
       priority: priority,
@@ -63,7 +64,7 @@ export default function TodoList() {
         </Input.Group>
       </Col>
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
-        {todoList.map (todo => <Todo key={todo.id} name={todo.name} prioriry={todo.priority} />)}
+        {todoList.map (todo => <Todo key={todo.id} id={todo.id} name={todo.name} prioriry={todo.priority} completed={todo.completed} />)}
       </Col>
       
     </Row>
