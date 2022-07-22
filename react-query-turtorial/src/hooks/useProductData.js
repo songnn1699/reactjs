@@ -6,9 +6,9 @@ const fetchHero =(heroId) =>{
     return axios.get(`https://fakestoreapi.com/products/${heroId}`)
 }
 
-export const useHeroData =(heroId) => {
+export const useProductData =(heroId) => {
     return ( 
-        useQuery(['super-heroes', heroId], () => fetchHero(heroId)) 
+        useQuery(['list-product', heroId], () => fetchHero(heroId)) 
         
     );
 }

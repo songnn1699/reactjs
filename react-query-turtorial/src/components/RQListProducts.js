@@ -4,11 +4,13 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
+import '../App.css'
+
 const fetchSuperHeroes=() =>{
     return axios.get('https://fakestoreapi.com/products')
 }
 
-export const RQSuperHeroes =() => {
+export const RQListProducts =() => {
     const onSuccess = (data) => {
         console.log ("perfome side after data fetching...", data)
 
@@ -18,7 +20,7 @@ export const RQSuperHeroes =() => {
     }
     
     
-    const {isLoading, data, isError, error, isFetching, refetch}= useQuery(['superheroes'], fetchSuperHeroes,
+    const {isLoading, data, isError, error, isFetching, refetch}= useQuery(['list-products'], fetchSuperHeroes,
     { 
         onSuccess,
         onError,
@@ -26,6 +28,7 @@ export const RQSuperHeroes =() => {
         //     const superHeroNames = data.data.map((hero) => hero.title);
         //     return superHeroNames
         // }
+        // enabled:false,
     } 
     )
     
@@ -42,11 +45,18 @@ export const RQSuperHeroes =() => {
 
     return (
         <>
-            <h2>RQ SuperHeroes page</h2>
-            <button onClick={refetch}>Call Api</button>
+            <h1>React query product page</h1>
+            <button className='btn' onClick={refetch}>Refresh</button>
+            
             {data?.data.map((hero) =>{
                 return <div key={hero.id}>
-                    <Link to={`/rq-superheroes/${hero.id}`}>{hero.title}</Link>
+                    <Link className="list-products" to={`/rq-listproducts/${hero.id}`}>
+                        <a className='single'>
+                            
+                            <h3>{hero.title}</h3>
+                        </a>
+                    </Link>
+                    
                     </div>
             })}
             {/* {

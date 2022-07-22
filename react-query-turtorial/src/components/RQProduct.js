@@ -1,10 +1,10 @@
-import { useHeroData } from "../hooks/useHeroData";
+import { useProductData } from "../hooks/useProductData";
 import { useParams } from "react-router-dom";
 
-export const RQHero = () => {
-    const {heroId}= useParams()
+export const RQProduct = () => {
+    const {productId}= useParams()
     
-    const {isLoading, data, isError, error} = useHeroData(heroId)
+    const {isLoading, data, isError, error} = useProductData(productId)
 
     if(isLoading){
         return <h2>Loading...</h2>
@@ -15,11 +15,10 @@ export const RQHero = () => {
 
     return (
         <div>
-            <div>Product details</div>
+            <h1>Product details</h1>
             <div>{data?.data.title} - price:{data?.data.price} $</div>
         </div>
 
       );
 }
  
-export default RQHero;

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 
-export const SuperHeroes =() => {
+export const Products =() => {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
     const [error, setError] =useState('');
@@ -19,12 +19,13 @@ export const SuperHeroes =() => {
         return <h2>Loading...</h2>
     }
     if(error){
+        setError(error);
         return <h2>{error.message}</h2>
     }
     
     return (
         <>
-            <h2>SuperHeroes page</h2>
+            <h1>Products page</h1>
             {data.map((hero) =>{
                 return <div key={hero.category}>{hero.category}</div>
             })}
