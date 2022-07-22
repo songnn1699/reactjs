@@ -9,7 +9,7 @@ export const SuperHeroes =() => {
     const [error, setError] =useState('');
 
     useEffect(() =>{
-        axios.get ('http://localhost:4000/superheroes').then((res) =>{
+        axios.get ('https://fakestoreapi.com/products').then((res) =>{
             setData(res.data);
             setIsLoading(false);
         })
@@ -26,7 +26,7 @@ export const SuperHeroes =() => {
         <>
             <h2>SuperHeroes page</h2>
             {data.map((hero) =>{
-                return <div key={hero.name}>{hero.name}</div>
+                return <div key={hero.category}>{hero.category}</div>
             })}
         </>
 
