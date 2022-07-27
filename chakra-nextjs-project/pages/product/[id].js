@@ -1,7 +1,7 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
 
 export const getStaticPaths = async() =>{
-    const res=await fetch('https://jsonplaceholder.typicode.com/users')
+    const res=await fetch('https://fakestoreapi.com/products')
     const data= await res.json();
 
     const paths =data.map(user =>{
@@ -18,7 +18,7 @@ export const getStaticPaths = async() =>{
 export const getStaticProps = async (context) =>{
     
     const id= context.params.id;
-    const res = await fetch('https://jsonplaceholder.typicode.com/users/' +id);
+    const res = await fetch('https://fakestoreapi.com/products/' +id);
     const data = await res.json();
 
     return{
@@ -30,10 +30,11 @@ export const getStaticProps = async (context) =>{
 const Detail = ({user}) => {
     return (  
         <Box className="user-detail">
-            <Heading>{user.name} Detail</Heading>
-            <Text>Username: {user.username}</Text>
-            <Text>Email: {user.email}</Text>
-            <Text>Phone: {user.phone}</Text>
+            <Heading className="heading-style" mb={10} textAlign="center">{user.title} Detail</Heading>
+            <Image src={user.image} w={'200px'} h={'200px'} m="auto"></Image>
+            <Text>Price: {user.price}</Text>
+            <Text>Type: {user.category}</Text>
+            <Text>Description: {user.description}</Text>
         </Box>
     );
 }

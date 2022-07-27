@@ -22,7 +22,10 @@ footer{
   color:#777;
   border-top: 1px solid rgba(128, 128, 128, 0.338);
 }
-.list-user{
-  width: 1000px;
-
+.heading-style{
+  
+  
+  text-shadow: 2px 2px aquamarine;
+  /* text-shadow: 1px 1px rgba(222, 52, 52, 0.242); */
+  /* position: relative; */
 }

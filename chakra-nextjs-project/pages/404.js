@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import {    useRouter   } from 'next/router'
+import { Heading, Text } from "@chakra-ui/react";
 
 
 
@@ -14,9 +15,9 @@ const NotFound = () => {
     }, [])
     return ( 
         <div className="not-found">
-            <h1>Oops...</h1>
-            <h2>That page can not found</h2>
-            <p >Go back to the <Link href='/'><a><b>Home Page</b></a></Link></p>
+            <Heading>Oops...</Heading>
+            <Text>That page can not found</Text>
+            <Text>Go back to the <Link href='/'><a><b>Home Page</b></a></Link></Text>
         </div>
      );
 }

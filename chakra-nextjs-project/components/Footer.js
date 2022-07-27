@@ -35,6 +35,7 @@ const Footer = () => {
             src='https://cdn-icons-png.flaticon.com/512/408/408421.png'>
         </Image>
         <Text>© 2022 Chakra Templates. All rights reserved</Text>
+        <Text>@Song Nguyen</Text>
         <Stack direction={'row'} spacing={6}>
           <IconButton label={'Twitter'} href={'#'}>
             <FaTwitter />

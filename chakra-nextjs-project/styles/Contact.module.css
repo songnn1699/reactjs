@@ -3,12 +3,11 @@
     text-transform: capitalize;
     border-radius: 5px;
     padding: 2px 16px;
-    background: black;
-    display:block;
+    background: white;
     margin: 20px 10px;
     border-left: 0px solid gray;
 }
 .single:hover{
-    border-left: 10px solid rgb(253, 122, 122);
-    /* background-image: linear-gradient(aquamarine, beige); */
+    border-bottom: 10px solid aquamarine;
+    background-image: linear-gradient(aquamarine, beige);
 }

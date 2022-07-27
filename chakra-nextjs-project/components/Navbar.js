@@ -18,24 +18,27 @@ const Navbar = () => {
 
             >   
                 <Flex alignItems='center'>
-                    <Image 
+                    <Link href='/' passHref>
+                        <Image 
+                        cursor='pointer'
                         width={8}
                         height={8}
                         src='https://cdn-icons-png.flaticon.com/512/2316/2316698.png'></Image>
+                    </Link>
                     <Box>
                         <Link href ='/' passHref>
-                            <Button as= 'a' variant='ghost' p={[1,2,4]} _hover={{backgroundColor: "red.300" } }>
+                            <Button as= 'a' variant='ghost'  _hover={{backgroundColor: "red.300" } }>
                                 Home
                             </Button>
                         </Link>
                         <Link href ='/about' passHref>
-                            <Button as= 'a' variant='ghost' p={[1,2,4]} _hover={{backgroundColor: "red.300" }}>
+                            <Button as= 'a' variant='ghost' _hover={{backgroundColor: "red.300" }}>
                                 About
                             </Button>
                         </Link>
-                        <Link href ='/contact' passHref>
-                            <Button as= 'a' variant='ghost' p={[1,2,4]} _hover={{backgroundcd: "red.300" }}>
-                                Contact
+                        <Link href ='/product' passHref>
+                            <Button as= 'a' variant='ghost'  _hover={{backgroundColor: "red.300" }}>
+                                Products
                             </Button>
                         </Link>
                         

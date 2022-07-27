@@ -22,7 +22,7 @@ const Home =() => {
             justifyContent='center'
             width={'1000px'}
           >
-            <Heading>Hi I'm Song Nguyen</Heading>
+            <Heading className='heading-style'>Hi I'm Song Nguyen</Heading>
             <Text>This is my page</Text>      
 
           </Flex>
