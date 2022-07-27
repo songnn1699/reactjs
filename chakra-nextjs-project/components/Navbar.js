@@ -44,8 +44,12 @@ const Navbar = () => {
                         
                     </Box>
                 </Flex>
-                <DarkModeSwitch></DarkModeSwitch>  
-                
+                <Flex >
+                    <Link href='/login'>
+                        <Button  mr={5}>Login</Button>
+                    </Link>
+                    <DarkModeSwitch></DarkModeSwitch>
+                </Flex>  
             </Flex>
      );
 }

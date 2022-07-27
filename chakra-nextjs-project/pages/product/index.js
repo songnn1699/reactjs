@@ -24,7 +24,7 @@ const Contact = ({user}) => {
                 {user.map(list =>(
                         <Link href={'/product/' +list.id} key={list.id} >
                             <Box  height='500px' className={styles.single} align='center' cursor='pointer' pos={'relative'}>
-                                <Image src={list.image} w={'200px'} h={'200px'} mt={5}></Image>
+                                <Image src={list.image} w={'200px'} h={'200px'} mt={5} borderRadius={15}></Image> 
                                 <List >
                                     <b>
                                         <Text >
@@ -35,14 +35,14 @@ const Contact = ({user}) => {
                                         $ {list.price}
                                     </Text>
                                     <Flex justifyContent="center"  pos={'absolute'} bottom="3" left='50%' transform='translateX(-50%)'spacing='10px'>
-                                        <Button bg='black' color='white' _hover={{color:'black', backgroundColor:'red.300'}} marginRight={5} >Buy now!</Button>
-                                        <IconButton _hover={{backgroundColor: 'pink'}} border='1px solid black'><FaShoppingCart/></IconButton>
+                                        <Link href='/buy'>
+                                            <Button  bg='black' color='white' _hover={{color:'black', backgroundColor:'red.300'}} marginRight={5} >Buy now!</Button>
+                                        </Link>
+                                        <IconButton _hover={{backgroundColor:'red.300'}} border='1px solid black'><FaShoppingCart/></IconButton>
                                     </Flex>
-                                    
                                 </List>
                             </Box>
-                        </Link>
-                    
+                        </Link>                   
                 ))}
             </SimpleGrid>
         </>
