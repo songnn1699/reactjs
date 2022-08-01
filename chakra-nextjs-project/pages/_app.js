@@ -3,6 +3,7 @@ import {ChakraProvider, ColorModeProvider, useColorMode } from '@chakra-ui/react
 import '../styles/globals.css'
 import Container from '../components/Container'
 import Head from 'next/head'
+
 // const color={
 //   brand: {
 //     900: '#1a365d',
@@ -12,6 +13,7 @@ import Head from 'next/head'
 //   },
 // }
 
+
 // const theme= extendTheme({color})
 
 function MyApp({ Component, pageProps }) {
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }) {
       <ColorModeProvider
         options={{
           initialColorMode: "light",
+        
         }}
       />
       <Head>

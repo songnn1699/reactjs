@@ -6,15 +6,22 @@ import {
     Box,
     Spacer,
     Image,
+    IconButton,
 }from '@chakra-ui/react'
 import Link from 'next/link'
 import DarkModeSwitch from '../components/DarkModeSwitch'
+import { FaShoppingBag } from "react-icons/fa";
 
 const Navbar = () => {
     return ( 
         <Flex justifyContent={'space-between'}
-                margin = {'10px 150px 0px 150px'}
-                position='sticky'
+                padding = {'20px 150px'}
+                // bgGradient='linear(to-r, aquamarine, beige)'
+                position='fixed'
+                right={0}
+                w={'100%'}
+                
+                top= {0}
 
             >   
                 <Flex alignItems='center'>
@@ -48,6 +55,9 @@ const Navbar = () => {
                     <Link href='/login'>
                         <Button  mr={5}>Login</Button>
                     </Link>
+                    <IconButton mr={5}>
+                        <FaShoppingBag></FaShoppingBag>
+                    </IconButton>
                     <DarkModeSwitch></DarkModeSwitch>
                 </Flex>  
             </Flex>

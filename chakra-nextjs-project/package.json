@@ -15,12 +15,20 @@
     "@emotion/styled": "^11.9.3",
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
+    "@tanstack/react-query": "^4.0.10",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "fa-icons": "^0.2.0",
     "framer-motion": "^6.5.1",
     "next": "12.2.3",
     "react": "18.2.0",
+    "react-bootstrap": "^2.4.0",
+    "react-carousel-minimal": "^1.4.1",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
+    "react-slick": "^0.29.0",
+    "rerousel": "^0.1.9"
   },
   "devDependencies": {
     "eslint": "8.20.0",
