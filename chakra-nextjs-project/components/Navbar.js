@@ -27,6 +27,7 @@ const Navbar = () => {
                 boxShadow={'0px 0px 10px 1px rgba(131, 129, 129, 0.5)'}
             >   
                 <Flex>
+                    
                     <Link href='/' passHref>
                         <Image 
                         cursor='pointer'

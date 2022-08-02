@@ -16,7 +16,7 @@ import {
     IconButton, 
     Button,
     Select,
-    extendTheme
+    Input
 }     from '@chakra-ui/react';
 
 
@@ -81,13 +81,23 @@ export const Products = ({user}) => {
     
     const [value, setValue] = useState('All');
     // console.log(text);
+    const [search, setSearch] = useState('');
 
     const a=user.products;
+    const b=user.products;  
     if( value !== 'All'){
         a= user.products.filter(a => a.category === value)
         
     }
-    
+
+    if(search !== ''){
+        b=user.products.filter(z => (z.title.includes(search)) || (z.brand.includes(search) || (z.category.includes(search))))
+    }
+
+    const handleSearch=(e) =>{
+        setSearch(e.target.value)
+        console.log (e.target.value)
+    }
 
 
 
@@ -97,7 +107,8 @@ export const Products = ({user}) => {
                     All Products
                 </Heading>
                 
-                <Select size='lg'  
+                <Input placeholder='Search' mb={5} size='lg' value={search} onChange={handleSearch} width={'1000px'}/>
+                <Select size='lg'  width={'1000px'}
                         onChange={(e) => {
                             setValue(e.target.value);
                         }} >
@@ -110,7 +121,7 @@ export const Products = ({user}) => {
                     <option value='home-decoration'>Home decoration</option>
                 </Select>    
                 <SimpleGrid columns={4} spacing={10} mt={10} >
-                    {a.map( list =>(
+                    {b.map( list =>(
                         <Link href={'/product/'+list.id} key={list.id} >
                             <Center py={10} cursor='pointer'  >
                                 <Box
