@@ -1,10 +1,12 @@
 import React from "react";
 import {
+    Center,
     useColorMode,
     Button,
     Flex,
     Box,
     Spacer,
+    Stack,
     Image,
 }from '@chakra-ui/react'
 // import Link from 'next/link'
@@ -18,17 +20,11 @@ const Container = ({children}) =>{
     return (
         <>
             <Navbar/>
-            <Flex as ='main'
-                flexDirection='column'
-                width={'1200px'}
-                margin={'auto'}
-                mb={20}
-                minWidth={500}
-                alignItems='center'
-                mt={10}
+            <Center as ='main'
+                padding={"10px 200px"}          
             >
                 {children}
-            </Flex>
+            </Center>
             <Footer></Footer>
 
 

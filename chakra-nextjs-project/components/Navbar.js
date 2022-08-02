@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    useColorMode,
+    useColorModeValue,
     Button,
     Flex,
     Box,
@@ -15,16 +15,18 @@ import { FaShoppingBag } from "react-icons/fa";
 const Navbar = () => {
     return ( 
         <Flex justifyContent={'space-between'}
-                padding = {'20px 150px'}
+                padding={'0px 100px'}
+                alignItems='center'
                 // bgGradient='linear(to-r, aquamarine, beige)'
+                width={'100%'}
+                height={'60px'}
+                top ='0'
                 position='fixed'
-                right={0}
-                w={'100%'}
-                
-                top= {0}
-
+                zIndex='9999999'
+                bgGradient={useColorModeValue('linear(to-r, orange.200, red.300)', 'linear(to-r, gray.800, gray.600)')}
+                boxShadow={'0px 0px 10px 1px rgba(131, 129, 129, 0.5)'}
             >   
-                <Flex alignItems='center'>
+                <Flex>
                     <Link href='/' passHref>
                         <Image 
                         cursor='pointer'
@@ -49,9 +51,10 @@ const Navbar = () => {
                             </Button>
                         </Link>
                         
+                        
                     </Box>
                 </Flex>
-                <Flex >
+                <Flex>
                     <Link href='/login'>
                         <Button  mr={5}>Login</Button>
                     </Link>
