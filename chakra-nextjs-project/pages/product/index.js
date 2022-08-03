@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import Link from 'next/link';
+import { CartProvider, useCart } from "react-use-cart";
+
 
 import { 
     Center,
@@ -25,9 +27,6 @@ import styles from '../../styles/Contact.module.css'
 // import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
 import axios from 'axios';
 // import Filter from './filter';
-const IMAGE =
-  'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
-
 
 
 // var filterValue=() => {
@@ -83,15 +82,16 @@ export const Products = ({user}) => {
     // console.log(text);
     const [search, setSearch] = useState('');
 
-    const a=user.products;
+    // const a=user.products;
     const b=user.products;  
     if( value !== 'All'){
-        a= user.products.filter(a => a.category === value)
+        b= user.products.filter(a => a.category === value)
         
     }
 
     if(search !== ''){
-        b=user.products.filter(z => (z.title.includes(search)) || (z.brand.includes(search) || (z.category.includes(search))))
+        b=user.products.filter(z => 
+            (z.title.toLowerCase().includes(search)) || (z.brand.toLowerCase().includes(search)) || (z.brand.toUpperCase().includes(search)) || (z.title.toUpperCase().includes(search)) || (z.brand.includes(search)) || (z.title.includes(search))) 
     }
 
     const handleSearch=(e) =>{
@@ -99,6 +99,7 @@ export const Products = ({user}) => {
         console.log (e.target.value)
     }
 
+    const {addItem} = useCart();
 
 
     return (
@@ -120,15 +121,15 @@ export const Products = ({user}) => {
                     <option value='groceries' >Groceries</option>
                     <option value='home-decoration'>Home decoration</option>
                 </Select>    
-                <SimpleGrid columns={4} spacing={10} mt={10} >
+                <SimpleGrid columns={4} spacing={10} mt={10} width={'1500px'}>
                     {b.map( list =>(
-                        <Link href={'/product/'+list.id} key={list.id} >
-                            <Center py={10} cursor='pointer'  >
+                        
+                            <Center py={10} cursor='pointer'   >
                                 <Box
                                     p={25}
                                     role={'group'}
                                     w={'280px'}
-                                    height={'420px'}
+                                    height={'auto'}
                                     bg={useColorModeValue('white', 'gray.700')}
                                     boxShadow={'2xl'}
                                     rounded={'lg'}
@@ -158,13 +159,16 @@ export const Products = ({user}) => {
                                             filter: 'blur(35px)',
                                             },
                                         }}>
-                                    <Image
-                                        rounded={'lg'}
-                                        height={'240px'}
-                                        width={'230px'}
-                                        objectFit={'fill'}
-                                        src={list.thumbnail}
-                                    />
+
+                                    <Link href={'/product/'+list.id} key={list.id} >
+                                        <Image
+                                            rounded={'lg'}
+                                            height={'240px'}
+                                            width={'230px'}
+                                            objectFit={'fill'}
+                                            src={list.thumbnail}
+                                        />
+                                    </Link>
                                     </Box>
                                     <Stack pt={10} align={'center'}>
                                             <Text fontSize={'sm'} textTransform={'uppercase'}>
@@ -181,10 +185,13 @@ export const Products = ({user}) => {
                                                     $10000
                                                 </Text>
                                             </Stack>
+                                            <Button onClick={() => addItem(list)}>
+                                                Add to cart
+                                            </Button>
                                     </Stack>
                                 </Box>
                             </Center>
-                        </Link>                   
+                                           
                     ))}
                 </SimpleGrid>
                      {/* {user.products.map( list =>(
@@ -224,5 +231,8 @@ export const Products = ({user}) => {
 
 //       );
 // }
+
+
+
  
 export default Products;

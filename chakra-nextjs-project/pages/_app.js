@@ -3,7 +3,7 @@ import {ChakraProvider, ColorModeProvider, useColorMode } from '@chakra-ui/react
 import '../styles/globals.css'
 import Container from '../components/Container'
 import Head from 'next/head'
-
+import { CartProvider, useCart } from "react-use-cart";
 // const color={
 //   brand: {
 //     900: '#1a365d',
@@ -18,6 +18,7 @@ import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
   return(
+    <CartProvider>
     <ChakraProvider>
       <ColorModeProvider
         options={{
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </Container>
     </ChakraProvider>
+    </CartProvider>
   ) 
 }
 

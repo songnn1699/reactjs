@@ -1,7 +1,7 @@
 // import Link from "next/link";
 import { useEffect } from "react";
 import {    useRouter   } from 'next/router'
-import { Heading, Text, Box, Button, Link, Center} from "@chakra-ui/react";
+import { Heading, Text, Box, Button, Link, Center, Spinner} from "@chakra-ui/react";
 
 
 
@@ -15,6 +15,7 @@ const NotFound = () => {
     }, [])
     return ( 
         <Center mt={20}>
+            <Spinner color='red.500' />
             <Box py={10} textAlign="center" px={6}>
                 <Heading
                     display="inline-block"

@@ -1,18 +1,36 @@
 import React from "react";
+import {useRef} from 'react'
+
 import {
     useColorModeValue,
     Button,
     Flex,
     Box,
-    Spacer,
     Image,
     IconButton,
+    useDisclosure,
+    Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    Input,
+
 }from '@chakra-ui/react'
 import Link from 'next/link'
 import DarkModeSwitch from '../components/DarkModeSwitch'
 import { FaShoppingBag } from "react-icons/fa";
+import Buy from "../pages/shoppingcart/ShoppingTab";
+
+
 
 const Navbar = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const btnRef = useRef();
+
+
     return ( 
         <Flex justifyContent={'space-between'}
                 padding={'0px 100px'}
@@ -22,12 +40,11 @@ const Navbar = () => {
                 height={'60px'}
                 top ='0'
                 position='fixed'
-                zIndex='9999999'
+                zIndex='100'
                 bgGradient={useColorModeValue('linear(to-r, orange.200, red.300)', 'linear(to-r, gray.800, gray.600)')}
                 boxShadow={'0px 0px 10px 1px rgba(131, 129, 129, 0.5)'}
             >   
                 <Flex>
-                    
                     <Link href='/' passHref>
                         <Image 
                         cursor='pointer'
@@ -56,12 +73,39 @@ const Navbar = () => {
                     </Box>
                 </Flex>
                 <Flex>
-                    <Link href='/login'>
-                        <Button  mr={5}>Login</Button>
+                    <Link href='/authentication/login'>
+                        <Button  mr={5}>Sign In</Button>
                     </Link>
-                    <IconButton mr={5}>
-                        <FaShoppingBag></FaShoppingBag>
+                    <Link href='/authentication/signup'>
+                        <Button  mr={5}>Sign Up</Button>
+                    </Link>   
+                    <IconButton mr={5} ref={btnRef} onClick={onOpen} icon={<FaShoppingBag/>}>
                     </IconButton>
+                    <Drawer
+                        size='lg'
+                            zIndex={99999999}
+                        isOpen={isOpen}
+                        placement='right'
+                        onClose={onClose}
+                        finalFocusRef={btnRef}
+                        >
+                        <DrawerOverlay />
+                        <DrawerContent>
+                            <DrawerCloseButton />
+                            <DrawerHeader>Shopping Cart</DrawerHeader>
+                
+                            <DrawerBody>
+                                <Buy></Buy>
+                            </DrawerBody>
+                
+                            <DrawerFooter>
+                            <Button variant='outline' mr={3} onClick={onClose}>
+                                Cancel
+                            </Button>
+                            <Button colorScheme='blue'>Save</Button>
+                            </DrawerFooter>
+                        </DrawerContent>
+                        </Drawer>
                     <DarkModeSwitch></DarkModeSwitch>
                 </Flex>  
             </Flex>

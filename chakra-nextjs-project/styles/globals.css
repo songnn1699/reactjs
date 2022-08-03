@@ -4,7 +4,7 @@ body{
   background: rgb(240, 185, 185);
   color: #333;
   font-family: "Nunito", sans-serif;
-
+  overflow: scroll;
 }
 /* a{
   font-size: 20px;
