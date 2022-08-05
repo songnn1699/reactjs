@@ -28,13 +28,15 @@ function MyApp({ Component, pageProps }) {
           <Head>
               <title>NextJS Chakra UI</title>
           </Head>
+          <CartProvider> 
               <Container>
               <QueryClientProvider client= {queryClient}>
-              <CartProvider> 
+              
                   <Component {...pageProps} />
-              </CartProvider>
+              
               </QueryClientProvider>
               </Container>
+          </CartProvider>
             
         </ChakraProvider>
       

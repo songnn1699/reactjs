@@ -18,10 +18,11 @@ import {
     IconButton, 
     Button,
     Select,
-    Input
+    Input,
+    Alert,
 }     from '@chakra-ui/react';
 
-
+import { AlertIcon} from '@chakra-ui/icons'
 import { FaShoppingCart } from 'react-icons/fa'
 import styles from '../../styles/Contact.module.css'
 // import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
@@ -160,7 +161,7 @@ export const Products = () => {
                                             },
                                         }}>
 
-                                    <Link href={`/product/${list.id}`}>
+                                    <Link href={`/product/${list.id}`} key={list.id}>
                                         <Image
                                             rounded={'lg'}
                                             height={'240px'}
@@ -186,8 +187,14 @@ export const Products = () => {
                                                 </Text>
                                             </Stack>
                                             <Button onClick={() => addItem(list)}>
+                                                    
                                                 Add to cart
                                             </Button>
+                                            {/* <Alert status='success'>
+                                                        <AlertIcon />
+                                                        Data uploaded to the server. Fire on!
+                                                    </Alert> */}
+                                            
                                     </Stack>
                                 </Box>
                             </Center>

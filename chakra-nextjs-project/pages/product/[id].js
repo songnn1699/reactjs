@@ -74,12 +74,10 @@ const Detail = () => {
     
     return (  
       <Container maxW={'7xl'} mt={70}>
-        <Link href={'/product'}>
+        <Link onClick={() =>{router.back()}}>
           <ChevronLeftIcon/>
-          
-          <b>Go Back</b></Link>
-
-
+          <b>Go Back</b>
+        </Link>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
