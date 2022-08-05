@@ -4,6 +4,7 @@ import '../styles/globals.css'
 import Container from '../components/Container'
 import Head from 'next/head'
 import { CartProvider, useCart } from "react-use-cart";
+import {QueryClient,QueryClientProvider } from '@tanstack/react-query'
 // const color={
 //   brand: {
 //     900: '#1a365d',
@@ -13,27 +14,31 @@ import { CartProvider, useCart } from "react-use-cart";
 //   },
 // }
 
-
+const queryClient = new QueryClient()
 // const theme= extendTheme({color})
 
 function MyApp({ Component, pageProps }) {
   return(
-    <CartProvider>
-    <ChakraProvider>
-      <ColorModeProvider
-        options={{
-          initialColorMode: "light",
-        
-        }}
-      />
-      <Head>
-          <title>NextJS Chakra UI</title>
-      </Head> 
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    </ChakraProvider>
-    </CartProvider>
+        <ChakraProvider>
+          <ColorModeProvider
+            options={{
+              initialColorMode: "light",
+            }}
+          />
+          <Head>
+              <title>NextJS Chakra UI</title>
+          </Head>
+              <Container>
+              <QueryClientProvider client= {queryClient}>
+              <CartProvider> 
+                  <Component {...pageProps} />
+              </CartProvider>
+              </QueryClientProvider>
+              </Container>
+            
+        </ChakraProvider>
+      
+    
   ) 
 }
 

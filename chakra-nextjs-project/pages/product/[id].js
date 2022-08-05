@@ -10,74 +10,101 @@ import { Box, Heading, Text, Image
   VisuallyHidden,
   List,
   ListItem,
+  Link,
 
 } from "@chakra-ui/react";
+
+import { ChevronLeftIcon} from '@chakra-ui/icons'
 import { Rerousel } from "rerousel";
-
-
-
-
+import { useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
 import {FaShippingFast} from "react-icons/fa"
+import { useParams } from "react-router-dom";
+import axios from 'axios'
 // import CaptionCarousel from "../../components/Carousel";
+import {useRouter } from 'next/router'
 
 
-export const getStaticPaths = async() =>{
-    const res=await fetch('https://dummyjson.com/products')
-    const data= await res.json();
+// NextJS Fectch Serverside
+// export const getStaticPaths = async() =>{
+//     const res=await fetch('https://dummyjson.com/products')
+//     const data= await res.json();
+//     const paths =data.map(user =>{
+//         return{
+//             params: {id: user.id.toString()}
+//         }
+//     })
+//     return{
+//         paths,
+//         fallback: false
+//     }
+// }
 
-    const paths =data.products.map(user =>{
-        return{
-            params: {id: user.id.toString()}
-        }
-    })
 
-    return{
-        paths,
-        fallback: false
-    }
+// export const getStaticProps = async (context) =>{
+//     const id= context.params.id;
+//     const res = await fetch('https://dummyjson.com/products/'+id);
+//     const data = await res.json();
+
+//     return{
+//         props:{user:data}
+//     }
+
+// }
+
+
+const fetchProducts = (prodid) =>{
+  return axios.get(`https://dummyjson.com/products/${prodid}`);
+ 
 }
-export const getStaticProps = async (context) =>{
+
+const Detail = () => {
+    const router = useRouter()
+    const {id} = router.query
+    // const ref = useRef(null);
+    const {isLoading, data, isFetching, isError, error} = useQuery(['products', id], () => fetchProducts(id))
+    if(isLoading || isFetching){
+      return <Heading>Loading...</Heading>
+    } 	
+    if(isError){
+        return <Heading>{error.message}</Heading>
+    }
+    // const query = data?.data
+    // const a=query.title
     
-    const id= context.params.id;
-    const res = await fetch('https://dummyjson.com/products/'+id);
-    const data = await res.json();
-
-    return{
-        props:{user:data}
-    }
-
-}
-
-const Detail = ({user}) => {
-    const ref = useRef(null);
     return (  
       <Container maxW={'7xl'} mt={70}>
+        <Link href={'/product'}>
+          <ChevronLeftIcon/>
+          
+          <b>Go Back</b></Link>
+
+
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
           py={{ base: 18, md: 24 }}>
           <Box>
-            
-            {/* <Image
+            <Image
               alt={'product image'}
               src={
-                user.thumbnail
+                data?.data.thumbnail
               }
               fit={'fill'}
               align={'center'}
               w={'100%'}
               h={{ base: '100%', sm: '400px', lg: '500px' }}
-            /> */}
-            <Rerousel itemRef={ref}>
+            />
+            {/* <Rerousel itemRef={ref}>
               
               <img className="carousel"
-                src={user.images[0]}
+                src={data?.data.images[0]}
                 ref={ref}></img>
-              <img className="carousel" src={user.images[1]} ></img>
-              <img src={user.images[2]} className="carousel" ></img>
-              <img src={user.images[3]} className="carousel"></img>
-            </Rerousel>
+              <img className="carousel" src={data?.data.images[1]} ></img>
+              <img src={data?.data.images[2]} className="carousel" ></img>
+              <img src={data?.data.images[3]} className="carousel"></img>
+            </Rerousel> */}
+
 
           </Box>
           <Stack spacing={{ base: 6, md: 10 }}>
@@ -86,13 +113,13 @@ const Detail = ({user}) => {
                 lineHeight={1.1}
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                {user.title}
+                {data?.data.title}
               </Heading>
               <Text
                 color={useColorModeValue('gray.900', 'gray.400')}
                 fontWeight={300}
                 fontSize={'2xl'}>
-                ${user.price}
+                ${data?.data.price}
               </Text>
             </Box>
 
@@ -109,10 +136,10 @@ const Detail = ({user}) => {
                   color={useColorModeValue('gray.500', 'gray.400')}
                   fontSize={'2xl'}
                   fontWeight={'300'}>
-                      {user.description}
+                      {data?.data.description}
                 </Text>
                 <Text>
-                  {user.catergory}
+                  {data?.data.catergory}
                 </Text>
                 
               </VStack>
@@ -133,7 +160,6 @@ const Detail = ({user}) => {
               }}>
               Add to cart
             </Button>
-
             <Stack direction="row" alignItems="center" justifyContent={'center'}>
               <FaShippingFast/>
               <Text>2-3 business days delivery</Text>

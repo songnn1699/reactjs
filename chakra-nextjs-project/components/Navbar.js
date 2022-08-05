@@ -29,8 +29,7 @@ import Buy from "../pages/shoppingcart/ShoppingTab";
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = useRef();
-
-
+    
     return ( 
         <Flex justifyContent={'space-between'}
                 padding={'0px 100px'}
@@ -92,17 +91,15 @@ const Navbar = () => {
                         <DrawerOverlay />
                         <DrawerContent>
                             <DrawerCloseButton />
-                            <DrawerHeader>Shopping Cart</DrawerHeader>
-                
+                            <DrawerHeader>Shopping Cart</DrawerHeader>            
                             <DrawerBody>
                                 <Buy></Buy>
                             </DrawerBody>
-                
                             <DrawerFooter>
                             <Button variant='outline' mr={3} onClick={onClose}>
                                 Cancel
                             </Button>
-                            <Button colorScheme='blue'>Save</Button>
+                            <Button colorScheme='blue'>Buy</Button>
                             </DrawerFooter>
                         </DrawerContent>
                         </Drawer>

@@ -27,22 +27,27 @@ import styles from '../../styles/Contact.module.css'
 // import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
 import axios from 'axios';
 // import Filter from './filter';
+import Detail from './[id]';
 
-
+import { useQuery } from '@tanstack/react-query';
 // var filterValue=() => {
 //     var e = document.getElementById("selectItem");
 //     var text = e.options[e.selectedIndex].text;
 //     return text
 // }
 
-
-export const getStaticProps= async() =>{
-    const res= await fetch ('https://dummyjson.com/products')
-    const data= await res.json();
-    return{
-        props:{user:data}
-    }
+const fetchProducts = () =>{
+    return axios.get('https://dummyjson.com/products')
 }
+
+
+// export const getStaticProps= async() =>{
+//     const res= await fetch ('https://dummyjson.com/products')
+//     const data= await res.json();
+//     return{
+//         props:{user:data}
+//     }
+// }
 
 
 
@@ -63,43 +68,38 @@ export const getStaticProps= async() =>{
 
 
 
-export const Products = ({user}) => {
+export const Products = () => {
   
  
     // React-Query---------------------------------
-    // const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts)
-
-    // if(isLoading || isFetching){
-    //     return <Heading>Loading...</Heading>
-    // }
-    // if(isError){
-    //     return <Heading>{error.message}</Heading>
-    // }
-
-    
-    
-    const [value, setValue] = useState('All');
-    // console.log(text);
+    const [value, setValue] = useState('All');    
     const [search, setSearch] = useState('');
+    const {addItem} = useCart();
+    const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts)
 
-    // const a=user.products;
-    const b=user.products;  
-    if( value !== 'All'){
-        b= user.products.filter(a => a.category === value)
-        
+    if(isLoading || isFetching){
+        return <Heading>Loading...</Heading>
+    }
+    if(isError){
+        return <Heading>{error.message}</Heading>
     }
 
+    
+    
+    // Clear data.map
+    const query=data?.data.products;  
+    if( value !== 'All'){
+        query= data?.data.products.filter(a => a.category === value)   
+    }
     if(search !== ''){
-        b=user.products.filter(z => 
+        query=data?.data.products.filter(z => 
             (z.title.toLowerCase().includes(search)) || (z.brand.toLowerCase().includes(search)) || (z.brand.toUpperCase().includes(search)) || (z.title.toUpperCase().includes(search)) || (z.brand.includes(search)) || (z.title.includes(search))) 
     }
-
     const handleSearch=(e) =>{
         setSearch(e.target.value)
         console.log (e.target.value)
     }
 
-    const {addItem} = useCart();
 
 
     return (
@@ -122,7 +122,7 @@ export const Products = ({user}) => {
                     <option value='home-decoration'>Home decoration</option>
                 </Select>    
                 <SimpleGrid columns={4} spacing={10} mt={10} width={'1500px'}>
-                    {b.map( list =>(
+                    {query.map( (list) =>(
                         
                             <Center py={10} cursor='pointer'   >
                                 <Box
@@ -160,7 +160,7 @@ export const Products = ({user}) => {
                                             },
                                         }}>
 
-                                    <Link href={'/product/'+list.id} key={list.id} >
+                                    <Link href={`/product/${list.id}`}>
                                         <Image
                                             rounded={'lg'}
                                             height={'240px'}

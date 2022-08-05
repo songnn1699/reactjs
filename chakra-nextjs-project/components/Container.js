@@ -21,7 +21,8 @@ const Container = ({children}) =>{
         <>
             <Navbar/>
             <Center as ='main'
-                padding={"10px 200px"}          
+                padding={"10px 200px"}   
+                mt={70}       
             >
                 {children}
             </Center>
