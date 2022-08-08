@@ -20,24 +20,27 @@ const queryClient = new QueryClient()
 function MyApp({ Component, pageProps }) {
   return(
         <ChakraProvider>
+          <CartProvider> 
           <ColorModeProvider
             options={{
               initialColorMode: "light",
             }}
           />
+          
           <Head>
-              <title>NextJS Chakra UI</title>
+              <link rel="shortcut icon" href="/anubis.png" />
+              {/* <Image src='../public/anubis.png'></Image> */}
+              <title>NextJS</title>
           </Head>
-          <CartProvider> 
+          
               <Container>
-              <QueryClientProvider client= {queryClient}>
-              
-                  <Component {...pageProps} />
-              
-              </QueryClientProvider>
+                <QueryClientProvider client= {queryClient}>
+                
+                    <Component {...pageProps} />
+                
+                </QueryClientProvider>
               </Container>
           </CartProvider>
-            
         </ChakraProvider>
       
     

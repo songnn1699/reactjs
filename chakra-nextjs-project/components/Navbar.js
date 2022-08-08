@@ -40,7 +40,7 @@ const Navbar = () => {
                 top ='0'
                 position='fixed'
                 zIndex='100'
-                bgGradient={useColorModeValue('linear(to-r, orange.200, red.300)', 'linear(to-r, gray.800, gray.600)')}
+                bgGradient={useColorModeValue('linear(to-b, orange.200, red.300)', 'linear(to-t, gray.800, gray.600)')}
                 boxShadow={'0px 0px 10px 1px rgba(131, 129, 129, 0.5)'}
             >   
                 <Flex>
@@ -49,7 +49,7 @@ const Navbar = () => {
                         cursor='pointer'
                         width={8}
                         height={8}
-                        src='https://cdn-icons-png.flaticon.com/512/2316/2316698.png'></Image>
+                        src='https://cdn-icons-png.flaticon.com/512/2510/2510106.png'></Image>
                     </Link>
                     <Box>
                         <Link href ='/' passHref>
@@ -96,10 +96,10 @@ const Navbar = () => {
                                 <Buy></Buy>
                             </DrawerBody>
                             <DrawerFooter>
-                            <Button variant='outline' mr={3} onClick={onClose}>
-                                Cancel
-                            </Button>
-                            <Button colorScheme='blue'>Buy</Button>
+                                <Button variant='outline' mr={3} onClick={onClose}>
+                                    Cancel
+                                </Button>
+                                <Button colorScheme='blue'>Buy</Button>
                             </DrawerFooter>
                         </DrawerContent>
                         </Drawer>

@@ -20,6 +20,8 @@ import {
     Select,
     Input,
     Alert,
+    useDisclosure,
+    useToast,
 }     from '@chakra-ui/react';
 
 import { AlertIcon} from '@chakra-ui/icons'
@@ -70,13 +72,12 @@ const fetchProducts = () =>{
 
 
 export const Products = () => {
-  
- 
-    // React-Query---------------------------------
     const [value, setValue] = useState('All');    
     const [search, setSearch] = useState('');
-    const {addItem} = useCart();
     const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts)
+    const {addItem} = useCart();
+    const toast = useToast()
+    // const {isOpen, onClose, onOpen} = useDisclosure()
 
     if(isLoading || isFetching){
         return <Heading>Loading...</Heading>
@@ -161,7 +162,7 @@ export const Products = () => {
                                             },
                                         }}>
 
-                                    <Link href={`/product/${list.id}`} key={list.id}>
+                                    <Link href={`/product/${list.id}`} key={list.id} >
                                         <Image
                                             rounded={'lg'}
                                             height={'240px'}
@@ -186,19 +187,27 @@ export const Products = () => {
                                                     $10000
                                                 </Text>
                                             </Stack>
-                                            <Button onClick={() => addItem(list)}>
-                                                    
+                                            <Button onClick={() => {
+                                                addItem(list),
+                                                toast({
+                                                    title: 'Successfully addItem',
+                                                    status: 'success',
+                                                    isClosable: true,
+                                                    duration:3000,
+                                                    position: 'bottom-left',
+                                                  })
+                                                }}>  
                                                 Add to cart
                                             </Button>
+                                            
+
                                             {/* <Alert status='success'>
                                                         <AlertIcon />
                                                         Data uploaded to the server. Fire on!
                                                     </Alert> */}
-                                            
                                     </Stack>
                                 </Box>
-                            </Center>
-                                           
+                            </Center>                   
                     ))}
                 </SimpleGrid>
                      {/* {user.products.map( list =>(

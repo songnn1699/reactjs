@@ -11,9 +11,11 @@ import { Box, Heading, Text, Image
   List,
   ListItem,
   Link,
+  useToast,
 
 } from "@chakra-ui/react";
 
+import { CartProvider, useCart } from "react-use-cart";
 import { ChevronLeftIcon} from '@chakra-ui/icons'
 import { Rerousel } from "rerousel";
 import { useQuery } from "@tanstack/react-query";
@@ -58,10 +60,11 @@ const fetchProducts = (prodid) =>{
  
 }
 
-const Detail = () => {
+export const Detail = () => {
     const router = useRouter()
     const {id} = router.query
-    // const ref = useRef(null);
+    const {addItem} =useCart()
+    const toast= useToast()
     const {isLoading, data, isFetching, isError, error} = useQuery(['products', id], () => fetchProducts(id))
     if(isLoading || isFetching){
       return <Heading>Loading...</Heading>
@@ -69,9 +72,11 @@ const Detail = () => {
     if(isError){
         return <Heading>{error.message}</Heading>
     }
-    // const query = data?.data
-    // const a=query.title
+    const query = data?.data
+    const a=query.title
     
+
+
     return (  
       <Container maxW={'7xl'} mt={70}>
         <Link onClick={() =>{router.back()}}>
@@ -155,7 +160,17 @@ const Detail = () => {
               _hover={{
                 transform: 'translateY(2px)',
                 boxShadow: 'lg',
-              }}>
+              }}
+              onClick={() => {
+                addItem(data?.data),
+                toast({
+                  title: 'Successfully addItem',
+                  status: 'success',
+                  isClosable: true,
+                  duration:3000,
+                  position: 'bottom-left',
+                })
+              }}>  
               Add to cart
             </Button>
             <Stack direction="row" alignItems="center" justifyContent={'center'}>

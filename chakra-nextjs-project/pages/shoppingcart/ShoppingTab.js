@@ -12,43 +12,52 @@ import {
   Select,
   useColorModeValue,
   Button,
+  useDisclosure,
+  AlertDialogOverlay,
+  AlertDialog,
+  AlertDialogFooter,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+
 } from '@chakra-ui/react'
 
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 
 
 import { CartOrderSummary } from './CartOrderSummary'
 import { useCart} from 'react-use-cart'
 import { PriceTag } from './PriceTag'
 
-export const getStaticProps= async() =>{
-  const res= await fetch ('https://dummyjson.com/products')
-  const data= await res.json();
-  return{
-      props:{user:data}
-  }
-}
+// export const getStaticProps= async() =>{
+//   const res= await fetch ('https://dummyjson.com/products')
+//   const data= await res.json();
+//   return{
+//       props:{user:data}
+//   }
+// }
 
 
 
 
 
-export const Buy = ({user}) => {
+export const Buy = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef()
   const {
     isEmpty,
     totalUniqueItems,
     items,
     updateItemQuantity,
-    removeItem,
-    totalItems,
+    removeItem: remove,
     cartTotal,
   } = useCart();
+  
   if (isEmpty) return <Text>Your cart is empty</Text>;
-  
-
-  
-
-
+  const handleRemove=(e) =>{
+      console.log(e.id)
+  }
   return (
     <Center>
       <Box
@@ -114,11 +123,8 @@ export const Buy = ({user}) => {
                     loading="lazy"
                   />
                   <Box pt="4">
-                    <Stack spacing="0.5">
-                      <Text fontWeight="medium">{item.title}</Text>
-                      <Text color={useColorModeValue('gray.600', 'gray.400')} fontSize="sm">
-                        {item.description}
-                      </Text>
+                    <Stack spacing="0.5" mr={2} alignItems="center" >
+                      <Text fontWeight="medium">{item.title}</Text> 
                     </Stack>
                   </Box>
                 </Stack>
@@ -145,7 +151,10 @@ export const Buy = ({user}) => {
                     >
                       +
                   </Button>
-                  <CloseButton onClick={() => removeItem(item.id)}/>
+                  {/* ()=> removeItem(item.id) */}
+                  <CloseButton onClick={()=> remove(item.id)}></CloseButton>
+                  
+
                 </Flex>
               </Flex>
               
