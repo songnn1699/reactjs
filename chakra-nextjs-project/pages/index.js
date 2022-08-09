@@ -2,95 +2,51 @@
 // import DarkModeSwitch from '../components/DarkModeSwitch'
 // import Container from '../components/Container'
 import { Flex, Heading, Stack, Text, useColorMode, Image, Container } from '@chakra-ui/react';
+import Carousel from '../components/Carousel';
 
-const Home =() => {
+
+export const getStaticProps= async() =>{
+    const res= await fetch ('https://dummyjson.com/products')
+    const data= await res.json('https://api.unsplash.com/photos/random?count=5');
+    return{
+        props:{user:data}
+    }
+}
+
+
+
+const Home =(user) => {
   return (
     
       // <Head>
       //   <title>Home sweet Home</title>
       // </Head>
-      <>
         <Container
           mt={70}
           display='block'
         >
-        <Stack spacing='9'
-          justifyContent='center'
-          alignItems='center'
-          m ='0 auto 4rem auto'
-          maxWidth='1000px'       
-        >
-          <Flex
-            flexDirection='column'
+          <Stack spacing='9'
             justifyContent='center'
-            width={'1000px'}
+            alignItems='center'
+            m ='0 auto 4rem auto'
+            maxWidth='1500px'       
           >
-            <Heading className='heading-style'>Hi I'm Song Nguyen</Heading>
-            <Text>This is my page</Text>      
-
-          </Flex>
-          <Image src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=410&q=80'>
-          </Image>
-        </Stack>
-        <Stack spacing='9'
-
-          justifyContent='center'
-          alignItems='center'
-          m ='0 auto 4rem auto'
-          maxWidth='1000px'       
-        >
-          <Flex
-            flexDirection='column'
-            justifyContent='center'
-            width={'1000px'}
-          >
-            <Heading className='heading-style'>Hi I'm Song Nguyen</Heading>
-            <Text>This is my page</Text>      
-
-          </Flex>
-          <Image src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=410&q=80'>
-          </Image>
-        </Stack>
-        <Stack spacing='9'
-
-          justifyContent='center'
-          alignItems='center'
-          m ='0 auto 4rem auto'
-          maxWidth='1000px'       
-        >
-          <Flex
-            flexDirection='column'
-            justifyContent='center'
-            width={'1000px'}
-          >
-            <Heading className='heading-style'>Hi I'm Song Nguyen</Heading>
-            <Text>This is my page</Text>      
-
-          </Flex>
-          <Image src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=410&q=80'>
-          </Image>
-        </Stack>
-        <Stack spacing='9'
-
-          justifyContent='center'
-          alignItems='center'
-          m ='0 auto 4rem auto'
-          maxWidth='1000px'       
-        >
-          <Flex
-            flexDirection='column'
-            justifyContent='center'
-            width={'1000px'}
-          >
-            <Heading className='heading-style'>Hi I'm Song Nguyen</Heading>
-            <Text>This is my page</Text>      
-
-          </Flex>
-          <Image src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=410&q=80'>
-          </Image>
-        </Stack>
+            <Flex
+              flexDirection='column'
+              justifyContent='center'
+              width='auto'
+            >
+              <Heading>Hi i'm Song Nguyen</Heading>
+              <Text>This is my page</Text>      
+            </Flex>
+            <Image
+              h= '100%'
+              w='100%'
+              src='https://media.giphy.com/media/5NPhdqmyRxn8I/giphy.gif'
+              borderRadius={300}
+            ></Image>
+          </Stack>
         </Container>
-        </>
       
     
   );

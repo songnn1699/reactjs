@@ -123,7 +123,7 @@ export const Products = () => {
                     <option value='groceries' >Groceries</option>
                     <option value='home-decoration'>Home decoration</option>
                 </Select>    
-                <SimpleGrid columns={4} spacing={10} mt={10} width={'1500px'}>
+                <SimpleGrid columns={4} spacing={10} mt={10} width={'1600px'}>
                     {query.map( (list) =>(
                         
                             <Center py={10} cursor='pointer'   >
@@ -195,6 +195,7 @@ export const Products = () => {
                                                     isClosable: true,
                                                     duration:3000,
                                                     position: 'bottom-left',
+
                                                   })
                                                 }}>  
                                                 Add to cart

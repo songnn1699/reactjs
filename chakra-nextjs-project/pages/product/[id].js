@@ -25,6 +25,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios'
 // import CaptionCarousel from "../../components/Carousel";
 import {useRouter } from 'next/router'
+import Carousel from "../../components/Carousel";
 
 
 // NextJS Fectch Serverside
@@ -88,7 +89,7 @@ export const Detail = () => {
           spacing={{ base: 8, md: 10 }}
           py={{ base: 18, md: 24 }}>
           <Box>
-            <Image
+            {/* <Image
               alt={'product image'}
               src={
                 data?.data.thumbnail
@@ -97,18 +98,10 @@ export const Detail = () => {
               align={'center'}
               w={'100%'}
               h={{ base: '100%', sm: '400px', lg: '500px' }}
-            />
-            {/* <Rerousel itemRef={ref}>
-              
-              <img className="carousel"
-                src={data?.data.images[0]}
-                ref={ref}></img>
-              <img className="carousel" src={data?.data.images[1]} ></img>
-              <img src={data?.data.images[2]} className="carousel" ></img>
-              <img src={data?.data.images[3]} className="carousel"></img>
-            </Rerousel> */}
-
-
+            /> */}
+            <Carousel
+              data={data?.data}
+            ></Carousel>
           </Box>
           <Stack spacing={{ base: 6, md: 10 }}>
             <Box as={'header'}>

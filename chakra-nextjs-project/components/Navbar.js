@@ -17,6 +17,7 @@ import {
     DrawerContent,
     DrawerCloseButton,
     Input,
+    
 
 }from '@chakra-ui/react'
 import Link from 'next/link'
@@ -45,11 +46,15 @@ const Navbar = () => {
             >   
                 <Flex>
                     <Link href='/' passHref>
-                        <Image 
+                        <Image
                         cursor='pointer'
                         width={8}
                         height={8}
-                        src='https://cdn-icons-png.flaticon.com/512/2510/2510106.png'></Image>
+                        borderRadius={20}
+                        
+                        src={useColorModeValue('https://media.giphy.com/media/5NPhdqmyRxn8I/giphy.gif','https://cdn-icons-png.flaticon.com/512/2510/2510106.png')}>
+                        
+                        </Image>
                     </Link>
                     <Box>
                         <Link href ='/' passHref>
