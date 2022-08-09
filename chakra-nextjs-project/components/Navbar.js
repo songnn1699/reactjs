@@ -36,23 +36,23 @@ const Navbar = () => {
                 padding={'0px 100px'}
                 alignItems='center'
                 // bgGradient='linear(to-r, aquamarine, beige)'
+                minWidth={'30%'}
                 width={'100%'}
                 height={'60px'}
                 top ='0'
                 position='fixed'
                 zIndex='100'
-                bgGradient={useColorModeValue('linear(to-b, orange.200, red.300)', 'linear(to-t, gray.800, gray.600)')}
+                bgGradient={useColorModeValue('linear(to-r, white, white, red.200)', 'linear(to-r, black, gray.600)')}
                 boxShadow={'0px 0px 10px 1px rgba(131, 129, 129, 0.5)'}
             >   
                 <Flex>
                     <Link href='/' passHref>
                         <Image
                         cursor='pointer'
-                        width={8}
-                        height={8}
-                        borderRadius={20}
-                        
-                        src={useColorModeValue('https://media.giphy.com/media/5NPhdqmyRxn8I/giphy.gif','https://cdn-icons-png.flaticon.com/512/2510/2510106.png')}>
+                        width={'auto'}
+                        height={12}
+                        // borderRadius={20}
+                        src={useColorModeValue('https://media4.giphy.com/media/xTiTnoUnHxVaaVNWhO/giphy.gif?cid=ecf05e47ywvjh1c306xx1727qp8a0usd0t4jemunl916eqmr&rid=giphy.gif&ct=g','https://media.giphy.com/media/5NPhdqmyRxn8I/giphy.gif')}>
                         
                         </Image>
                     </Link>

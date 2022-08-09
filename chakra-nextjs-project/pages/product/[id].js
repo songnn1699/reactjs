@@ -100,7 +100,7 @@ export const Detail = () => {
               h={{ base: '100%', sm: '400px', lg: '500px' }}
             /> */}
             <Carousel
-              data={data?.data}
+              data={data?.data.images}
             ></Carousel>
           </Box>
           <Stack spacing={{ base: 6, md: 10 }}>

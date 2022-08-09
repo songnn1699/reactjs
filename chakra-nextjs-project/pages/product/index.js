@@ -43,7 +43,6 @@ const fetchProducts = () =>{
     return axios.get('https://dummyjson.com/products')
 }
 
-
 // export const getStaticProps= async() =>{
 //     const res= await fetch ('https://dummyjson.com/products')
 //     const data= await res.json();
@@ -51,15 +50,6 @@ const fetchProducts = () =>{
 //         props:{user:data}
 //     }
 // }
-
-
-
-   
-   
-
-
-
-
 // -----React Quey ---------------------
 // const queryClient = new QueryClient()
 
@@ -67,9 +57,6 @@ const fetchProducts = () =>{
 // const fetchProducts=() =>{
 //     return axios.get('https://fakestoreapi.com/products')
 // } 
-
-
-
 
 export const Products = () => {
     const [value, setValue] = useState('All');    
@@ -110,8 +97,8 @@ export const Products = () => {
                     All Products
                 </Heading>
                 
-                <Input placeholder='Search' mb={5} size='lg' value={search} onChange={handleSearch} width={'1000px'}/>
-                <Select size='lg'  width={'1000px'}
+                <Input placeholder='Search' mb={5} size='lg' value={search} onChange={handleSearch} width={'auto'} maxWidth={'1000px'}/>
+                <Select size='lg'  width={'auto'} maxWidth={'1000px'}
                         onChange={(e) => {
                             setValue(e.target.value);
                         }} >
@@ -123,14 +110,13 @@ export const Products = () => {
                     <option value='groceries' >Groceries</option>
                     <option value='home-decoration'>Home decoration</option>
                 </Select>    
-                <SimpleGrid columns={4} spacing={10} mt={10} width={'1600px'}>
-                    {query.map( (list) =>(
-                        
+                <SimpleGrid columns={4} spacing={10} mt={10} width={'auto'}>
+                    {query.map( (list) =>(                      
                             <Center py={10} cursor='pointer'   >
                                 <Box
                                     p={25}
                                     role={'group'}
-                                    w={'280px'}
+                                    w={'auto'}
                                     height={'auto'}
                                     bg={useColorModeValue('white', 'gray.700')}
                                     boxShadow={'2xl'}
@@ -139,15 +125,15 @@ export const Products = () => {
                                     zIndex={0}>
                                     <Box
                                         rounded={'lg'}
-                                        mt={-12}
+                                        mt={-20}
                                         pos={'relative'}
-                                        width={'230px'}
-                                        height={'240px'}
+                                        width={'auto'}
+                                        height={'auto'}
                                         _after={{
                                             transition: 'all .3s ease',
                                             content: '""',
-                                            w: 'full',
-                                            h: 'full',
+                                            w: '100%',
+                                            h: '100%',
                                             pos: 'absolute',
                                             top: 5,
                                             left: 0,
@@ -165,9 +151,9 @@ export const Products = () => {
                                     <Link href={`/product/${list.id}`} key={list.id} >
                                         <Image
                                             rounded={'lg'}
-                                            height={'240px'}
-                                            width={'230px'}
-                                            objectFit={'fill'}
+                                            height={'auto'}
+                                            width={'auto'}
+                                            objectFit={'cover'}
                                             src={list.thumbnail}
                                         />
                                     </Link>

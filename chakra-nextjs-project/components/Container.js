@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    Container,
     Center,
     useColorMode,
     Button,
@@ -15,14 +16,15 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 
-const Container = ({children}) =>{
+const Main = ({children}) =>{
 
     return (
         <>
             <Navbar/>
             <Center as ='main'
-                padding={"10px 200px"}   
+                padding={"10px 150px"}   
                 mt={70}       
+                // minWidth={'40%'}
             >
                 {children}
             </Center>
@@ -32,4 +34,4 @@ const Container = ({children}) =>{
         </>
     )
 }
-export default Container;
+export default Main;

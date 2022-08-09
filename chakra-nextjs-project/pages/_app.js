@@ -32,8 +32,8 @@ function MyApp({ Component, pageProps }) {
               {/* <Image src='../public/anubis.png'></Image> */}
               <title>NextJS</title>
           </Head>
-          
-              <Container>
+           
+              <Container >
                 <QueryClientProvider client= {queryClient}>
                 
                     <Component {...pageProps} />
