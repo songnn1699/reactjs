@@ -105,11 +105,11 @@ const Navbar = () => {
                             <DrawerBody>
                                 <Buy></Buy>
                             </DrawerBody>
-                            <DrawerFooter>
-                                <Button variant='outline' mr={3} onClick={onClose}>
+                            <DrawerFooter mb={10} >
+                                <Button variant='outline' mr={3} onClick={onClose} size='lg'>
                                     Cancel
                                 </Button>
-                                <Button colorScheme='blue'>Buy</Button>
+                                <Button size={'lg'} bg='red.300' onClick={onClose}>Buy</Button>
                             </DrawerFooter>
                         </DrawerContent>
                         </Drawer>

@@ -1,5 +1,3 @@
-import React from 'react';
-import { useState } from 'react';
 import { 
   Box, 
   Heading, 
@@ -60,7 +58,7 @@ export const getStaticProps = async (context) =>{
 // }
 
 export const Detail = ({user}) => {
-    const [value, setValue] = useState()
+  
     const router = useRouter()
     // const {id} = router.query
     const {addItem} =useCart()

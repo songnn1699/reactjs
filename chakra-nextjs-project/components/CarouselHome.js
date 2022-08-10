@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 // Settings for the slider
 
 
-export default function CarouselHome(props) {
+const CarouselHome=(props) => {
   const {data} =props
   const [slider, setSlider] = useState(0)
 
@@ -38,7 +38,7 @@ export default function CarouselHome(props) {
       <Slider
         {...settings}>
           {data.results.map((url, idx) => (
-              <Box className={idx === slider ? "center" : "slide"}>
+              <Box className={idx === slider ? "center" : "slide"} key={url.id}>
                 <Image 
                   // height={'700px'}
                   // width={'1500px'}
@@ -57,3 +57,5 @@ export default function CarouselHome(props) {
       
       
 }
+
+export default CarouselHome

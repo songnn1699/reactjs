@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Link from 'next/link';
 import { useCart } from "react-use-cart";
@@ -10,13 +10,12 @@ import {
     Stack,
     Box, 
     Heading, 
-    Text, 
+    Text,   
     Image, 
     SimpleGrid, 
     Button,
     Select,
     Input,
- 
     useToast,
 }     from '@chakra-ui/react';
 import axios from 'axios';
@@ -32,19 +31,22 @@ import { useQuery } from '@tanstack/react-query';
 //     }
 // }
 
-const fetchProducts = () =>{
+const fetchProducts =() =>{
     return axios.get('https://dummyjson.com/products')
 }
+
 
 export const Products = () => {
     const [value, setValue] = useState('All');    
     const [search, setSearch] = useState('');
     
-    const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts)
+    const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts, {
+        staleTime:Infinity,
+
+    })
     const {addItem} = useCart();
     const toast = useToast()
-    // const {isOpen, onClose, onOpen} = useDisclosure()
-
+    
     if(isLoading || isFetching){
         return <Heading>Loading...</Heading>
     }
@@ -53,6 +55,7 @@ export const Products = () => {
     }
     // Clear data.map
     const query=data?.data.products;  
+
     if( value !== 'All'){
         query= data?.data.products.filter(a => a.category === value)   
     }

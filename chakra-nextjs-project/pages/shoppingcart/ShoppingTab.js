@@ -34,8 +34,8 @@ import { useCart} from 'react-use-cart'
 
 
 export const Buy = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = useRef()
+  // const { isOpen, onOpen, onClose } = useDisclosure()
+  // const cancelRef = useRef()
   const {
     isEmpty,
     totalUniqueItems,
@@ -46,11 +46,11 @@ export const Buy = () => {
   } = useCart();
   
   if (isEmpty) return <Text>Your cart is empty</Text>;
-  const handleRemove=(e) =>{
-      console.log(e.id)
-  }
+  // const handleRemove=(e) =>{
+  //     console.log(e.id)
+  // }
   return (
-    <Center>
+    <Center zIndex={99999999999}>
       <Box
         maxW={{
           base: '3xl',
@@ -122,6 +122,7 @@ export const Buy = () => {
           
                 {/* Desktop */}
                 <Flex
+                  
                   width="full"
                   justify="space-between"
                   display={{
@@ -129,7 +130,7 @@ export const Buy = () => {
                     md: 'flex',
                   }}
                 >
-                  <PriceTag price={item.price}  />
+                  <Text fontSize={20} fontWeight="bold"> ${item.price} </Text>
                   
                   <Button
                       onClick={() => updateItemQuantity(item.id, item.quantity - 1)}

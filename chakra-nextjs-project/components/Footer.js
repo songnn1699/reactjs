@@ -26,7 +26,7 @@ const Footer = () => {
           bottom={0}
           bg={useColorModeValue('gray.50', 'gray.900')}
           color={useColorModeValue('gray.700', 'gray.200')}
-          zIndex={9999999}
+          zIndex={200}
           position={'fixed'}
           w={'100%'}
           >
