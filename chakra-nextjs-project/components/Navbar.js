@@ -69,7 +69,12 @@ const Navbar = () => {
                         </Link>
                         <Link href ='/product' passHref>
                             <Button as= 'a' variant='ghost'  _hover={{backgroundColor: "red.300" }}>
-                                Products
+                                React Query
+                            </Button>
+                        </Link>
+                        <Link href ='/productNext' passHref>
+                            <Button as= 'a' variant='ghost'  _hover={{backgroundColor: "red.300" }}>
+                                NextJS Data Fetching
                             </Button>
                         </Link>
                         

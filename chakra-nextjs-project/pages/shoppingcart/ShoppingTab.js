@@ -5,30 +5,21 @@ import {
   Center,
   Flex,
   Heading,
-  HStack,
-  Link,
+
   Stack,
   CloseButton,
-  Select,
-  useColorModeValue,
+
+
   Button,
   useDisclosure,
-  AlertDialogOverlay,
-  AlertDialog,
-  AlertDialogFooter,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogBody,
-  AlertDialogCloseButton,
 
 } from '@chakra-ui/react'
 
-import {useState, useRef} from 'react'
+import { useRef} from 'react'
 
 
-import { CartOrderSummary } from './CartOrderSummary'
 import { useCart} from 'react-use-cart'
-import { PriceTag } from './PriceTag'
+
 
 // export const getStaticProps= async() =>{
 //   const res= await fetch ('https://dummyjson.com/products')
@@ -163,15 +154,6 @@ export const Buy = () => {
               <Heading>Total Price: {cartTotal} </Heading>
             </Stack>
           </Stack>
-          {/* <Flex direction="column" align="center" flex="1">
-            <CartOrderSummary 
-              price={user.products.price}
-            />
-            <HStack mt="6" fontWeight="semibold">
-              <p>or</p>
-              <Link color={useColorModeValue('blue.500', 'blue.200')} href="/product">Continue shopping</Link>
-            </HStack>
-          </Flex> */}
         </Stack>
       </Box>
   </Center>

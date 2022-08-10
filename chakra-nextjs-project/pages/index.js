@@ -7,7 +7,7 @@ import CarouselHome from '../components/CarouselHome';
 // client id unsplash: vMRhfaPfadaQ5anWl1Zttb3uFoHr_p6zcLNclnF2mNg
 
 export const getStaticProps= async() =>{
-      const res= await fetch ('https://api.unsplash.com/photos/random?count=10&client_id=vMRhfaPfadaQ5anWl1Zttb3uFoHr_p6zcLNclnF2mNg')
+      const res= await fetch ('https://api.unsplash.com/search/photos?page=2&query=vietnam&count=10&client_id=vMRhfaPfadaQ5anWl1Zttb3uFoHr_p6zcLNclnF2mNg')
       const data= await res.json();
       return{
           props:{user:data}
@@ -36,10 +36,9 @@ export const Home =({user}) => {
               <Heading>Hi i'm Song Nguyen</Heading>
               <Text>This is my page</Text>      
             </Flex>
-            <Box width='2000px' height='800px' mt={10}>
+            <Box width='2000px' minWidth='1000px' mt={10}>
               <CarouselHome  data={user}></CarouselHome>      
             </Box>
-            
         </Center>
   );
 }

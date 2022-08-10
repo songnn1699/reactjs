@@ -16,58 +16,60 @@ import {
     Button,
     Select,
     Input,
- 
     useToast,
 }     from '@chakra-ui/react';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+// import axios from 'axios';
+// import { useQuery } from '@tanstack/react-query';
 
 
 // ----NextJS Fetching---------------------------------------------------
-// export const getStaticProps= async() =>{
-//     const res= await fetch ('https://dummyjson.com/products')
-//     const data= await res.json();
-//     return{
-//         props:{user:data}
-//     }
+export const getStaticProps= async() =>{
+    const res= await fetch ('https://dummyjson.com/products')
+    const data= await res.json();
+    return{
+        props:{user:data}
+    }
+}
+//---ReactQuery----------------------------------------------------
+// const fetchProducts = () =>{
+//     return axios.get('https://dummyjson.com/products')
 // }
 
-const fetchProducts = () =>{
-    return axios.get('https://dummyjson.com/products')
-}
-
-export const Products = () => {
+const Products = ({user}) => {
     const [value, setValue] = useState('All');    
     const [search, setSearch] = useState('');
-    
-    const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts)
+    // const {isLoading, data, isError, error, isFetching}= useQuery(['products'], fetchProducts)
     const {addItem} = useCart();
     const toast = useToast()
     // const {isOpen, onClose, onOpen} = useDisclosure()
 
-    if(isLoading || isFetching){
-        return <Heading>Loading...</Heading>
-    }
-    if(isError){
-        return <Heading>{error.message}</Heading>
-    }
+    // if(isLoading || isFetching){
+    //     return <Heading>Loading...</Heading>
+    // }
+    // if(isError){
+    //     return <Heading>{error.message}</Heading>
+    // }
+
     // Clear data.map
-    const query=data?.data.products;  
+    const query = user.products;  
     if( value !== 'All'){
-        query= data?.data.products.filter(a => a.category === value)   
+        query= user.products.filter(a => a.category === value)   
     }
+
     if(search !== ''){
-        query=data?.data.products.filter(z => 
+        query=user.products.filter(z => 
             (z.title.toLowerCase().includes(search)) || (z.brand.toLowerCase().includes(search)) || (z.brand.toUpperCase().includes(search)) || (z.title.toUpperCase().includes(search)) || (z.brand.includes(search)) || (z.title.includes(search))) 
     }
+    
     const handleSearch=(e) =>{
         setSearch(e.target.value)
         console.log (e.target.value)
     }
+
     return (
         <Center mt={70} pos='relative' flexDirection='column'>          
                 <Heading mb={10}>
-                    All Products ReactQuery
+                    All Products DataFetching NextJS
                 </Heading>
                 
                 <Input placeholder='Search' mb={5} size='lg' value={search} onChange={handleSearch} width={'auto'} maxWidth={'1000px'}/>
@@ -83,7 +85,7 @@ export const Products = () => {
                     <option value='groceries' >Groceries</option>
                     <option value='home-decoration'>Home decoration</option>
                 </Select>    
-                <SimpleGrid columns={4} spacing={10} mt={10} width={'auto'}>
+                <SimpleGrid columns={4} spacing={10} mt={10} width={'auto'} >
                     {query.map( list =>(                      
                             <Center py={10} cursor='pointer'  key={list.id} >
                                 <Box
@@ -122,7 +124,7 @@ export const Products = () => {
                                             },
                                         }}>
 
-                                    <Link href={`/product/${list.id}`} key={list.id} >
+                                    <Link href={`/productNext/${list.id}`} key={list.id} >
                                         <Image
                                             rounded={'lg'}
                                             height={'auto'}

@@ -1,15 +1,16 @@
-import { Box, Heading, Text, Image 
-  ,Container,
+import React from 'react';
+import { useState } from 'react';
+import { 
+  Box, 
+  Heading, 
+  Text,
+  Container,
   Stack,
-  Flex,
   VStack,
   Button,
   SimpleGrid,
   StackDivider,
   useColorModeValue,
-  VisuallyHidden,
-  List,
-  ListItem,
   Link,
   useToast,
 
@@ -18,61 +19,60 @@ import { Box, Heading, Text, Image
 import {  useCart } from "react-use-cart";
 import { ChevronLeftIcon} from '@chakra-ui/icons'
 
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 
 import {FaShippingFast} from "react-icons/fa"
-import axios from 'axios'
+// import axios from 'axios'
 // import CaptionCarousel from "../../components/Carousel";
 import {useRouter } from 'next/router'
 import Carousel from "../../components/CarouselDetail";
 
 
-// NextJS Fectch Serverside
-// export const getStaticPaths = async() =>{
-//     const res=await fetch('https://dummyjson.com/products')
-//     const data= await res.json();
-//     const paths =data.map(user =>{
-//         return{
-//             params: {id: user.id.toString()}
-//         }
-//     })
-//     return{
-//         paths,
-//         fallback: false
-//     }
-// }
+// NextJS Fectchich Data
+export const getStaticPaths = async() =>{
+    const res=await fetch('https://dummyjson.com/products')
+    const data= await res.json();
+    const paths =data.products.map(user =>{
+        return{
+            params: {id: user.id.toString()}
+        }
+    })
+    return{
+        paths,
+        fallback: false
+    }
+}
+export const getStaticProps = async (context) =>{
+    const id= context.params.id;
+    const res = await fetch('https://dummyjson.com/products/'+id);
+    const data = await res.json();
 
+    return{
+        props:{user:data}
+    }
 
-// export const getStaticProps = async (context) =>{
-//     const id= context.params.id;
-//     const res = await fetch('https://dummyjson.com/products/'+id);
-//     const data = await res.json();
-
-//     return{
-//         props:{user:data}
-//     }
-
-// }
-
-
-const fetchProducts = (prodid) =>{
-  return axios.get(`https://dummyjson.com/products/${prodid}`);
- 
 }
 
-const Detail = () => {
+
+// const fetchProducts = (prodid) =>{
+//   return axios.get(`https://dummyjson.com/products/${prodid}`);
+ 
+// }
+
+export const Detail = ({user}) => {
     const [value, setValue] = useState()
     const router = useRouter()
-    const {id} = router.query
+    // const {id} = router.query
     const {addItem} =useCart()
     const toast= useToast()
-    const {isLoading, data, isFetching, isError, error} = useQuery(['products', id], () => fetchProducts(id))
-    if(isLoading || isFetching){
-      return <Heading>Loading...</Heading>
-    } 	
-    if(isError){
-        return <Heading>{error.message}</Heading>
-    }
+    // const {isLoading, data, isFetching, isError, error} = useQuery(['products', id], () => fetchProducts(id))
+    // if(isLoading || isFetching){
+    //   return <Heading>Loading...</Heading>
+    // } 	
+    // if(isError){
+    //     return <Heading>{error.message}</Heading>
+    // }  
+
 
     return (  
       <Container maxW={'7xl'} mt={70}>
@@ -85,18 +85,8 @@ const Detail = () => {
           spacing={{ base: 8, md: 10 }}
           py={{ base: 18, md: 24 }}>
           <Box>
-            {/* <Image
-              alt={'product image'}
-              src={
-                data?.data.thumbnail
-              }
-              fit={'fill'}
-              align={'center'}
-              w={'100%'}
-              h={{ base: '100%', sm: '400px', lg: '500px' }}
-            /> */}
             <Carousel
-              data={data?.data.images}
+              data={user.images}
             ></Carousel>
           </Box>
           <Stack spacing={{ base: 6, md: 10 }}>
@@ -105,13 +95,13 @@ const Detail = () => {
                 lineHeight={1.1}
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                {data?.data.title}
+                {user.title}
               </Heading>
               <Text
                 color={useColorModeValue('gray.900', 'gray.400')}
                 fontWeight={300}
                 fontSize={'2xl'}>
-                ${data?.data.price}
+                ${user.price}
               </Text>
             </Box>
 
@@ -128,10 +118,10 @@ const Detail = () => {
                   color={useColorModeValue('gray.500', 'gray.400')}
                   fontSize={'2xl'}
                   fontWeight={'300'}>
-                      {data?.data.description}
+                      {user.description}
                 </Text>
                 <Text>
-                  {data?.data.catergory}
+                  {user.catergory}
                 </Text>
                 
               </VStack>
@@ -151,7 +141,7 @@ const Detail = () => {
                 boxShadow: 'lg',
               }}
               onClick={() => {
-                addItem(data?.data),
+                addItem(user),
                 toast({
                   title: 'Successfully addItem',
                   status: 'success',
