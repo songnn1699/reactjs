@@ -1,0 +1,18 @@
+.single {
+    
+    text-transform: capitalize;
+    border-radius: 15px;
+    padding: 2px 16px;
+    /* background: white; */
+    margin: 20px 10px;
+    box-shadow: 0px 0px 10px 1px rgba(131, 129, 129, 0.567);
+    
+} 
+
+
+
+.single:hover{
+    /* border-bottom: 10px solid aquamarine; */
+    color: black;
+    background-image: linear-gradient(aquamarine, beige);
+}
